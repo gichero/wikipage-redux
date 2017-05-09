@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const pgp = require('pg-promise')();
 const db = pgp({
-  database: 'wiki_db'
+  database: 'wiki',
+  host: 'localhost',
+  port: 5432
 });
 
 const app = express();

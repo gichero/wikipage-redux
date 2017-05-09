@@ -1,11 +1,20 @@
 
 const INITIAL_STATE = {
-    page: "test"
+    title: "HomePage",
+    // content: "Welcome to the HomePage"
+    content: {},
+    editing: false
+
 }
 
-const reducer = (state = INITIAL_STATE, action) => {
+export default function reducer(state = INITIAL_STATE, action){
+    if (action.type === 'update-contents') {
+        console.log(state);
+        return Object.assign({}, state, {
+          content: action.payload
+        });
+      } else {
 
-    return state;
-}
-
-export default reducer;
+        return state;
+      }
+  }

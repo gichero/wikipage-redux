@@ -1,11 +1,32 @@
 import React from 'react';
+import * as ReactRedux from 'react-redux';
+import * as actions from './WikiPage.actions'
 
-export default class WikiPage extends React.component {
+class WikiPage extends React.Component {
+
+    componentWillReceiveProps(newProps){
+        if(this.props.params.title !== newProps.params.title){
+             this.props.fetchPage(newProps.params.title);
+        }
+    }
+    componentDidMount() {
+   this.props.fetchPage(this.props.params.title)
+ }
     render(){
         return(
+
             <div>
-            <h1>Wiki!</h1>
+            <button onClick={()=>this.props.fetchPage(this.props.params.title)}>Fetch</button>
+            <textarea>{this.props.content.content}</textarea>
+            <button onClick={()=>this.props.toggleEdit()}>edit</button>
             </div>
         )
     }
 }
+
+const WikiPageContainer = ReactRedux.connect(
+    function(state){return state.wikiPage},
+    actions
+)(WikiPage);
+
+export default WikiPageContainer;

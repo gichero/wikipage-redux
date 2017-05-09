@@ -24,7 +24,6 @@ return asyncAction;
 
 }
 
-
 export function toggleEdit(title){
     let asyncAction = function(dispatch){
     $.ajax({
